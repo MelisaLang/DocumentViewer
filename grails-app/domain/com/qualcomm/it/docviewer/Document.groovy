@@ -2,9 +2,10 @@ package com.qualcomm.it.docviewer
 
 import grails.rest.Resource
 
-@Resource(uri='/documents')
+// @Resource(uri='/api/documents')
 class Document {
 
+	String documentId
 	String author
 	Date pubDate
 	String docDescription
@@ -13,12 +14,16 @@ class Document {
 	Date lastUpdated
 	
     static constraints = {
-		author blank:false
-		docDescription blank:false
+		documentId size: 3..64, unique: true, blank: false
+		author size:3..64, blank:false
+		docDescription size:3..256, blank:false
 		pubDate nullable:true
     }
 	
 	static mapping = {
-		autoTimestamp true
+		autoTimestamp true		// true by default
 	}
+	
+	String toString() { return "Document $documentId (id: $id)" }  // returns a diagnostic string for log messages and debugging
+	String getDisplayString() { return documentId }	// creates a read-only displayString property for the scaffolding
 }

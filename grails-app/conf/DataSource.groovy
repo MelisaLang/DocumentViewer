@@ -31,6 +31,7 @@ environments {
 			url = "jdbc:mysql://localhost/crp_lgl_dev?useUnicode=yes&characterEncoding=UTF-8"
 			username = "doc_user"
 			password = "doc_user"
+			// logSql = true
         }
     }
     test {
